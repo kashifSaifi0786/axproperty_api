@@ -4,7 +4,7 @@ const User = require("../model/user");
 const { generatePassword } = require("../utils/commonMethod");
 const { verifyToken, isAdminAndSrManager } = require("../middleware/access");
 
-router.post("/:userId", isAdminAndSrManager, async (req, res) => {
+router.post("/", isAdminAndSrManager, async (req, res) => {
   const { name, email, role } = req.body;
 
   if (!name || !email || !role)
@@ -33,7 +33,7 @@ router.post("/:userId", isAdminAndSrManager, async (req, res) => {
   }
 });
 
-router.put("/:userId/:id", isAdminAndSrManager, async (req, res) => {
+router.put("/:id", isAdminAndSrManager, async (req, res) => {
   const { name, email, role } = req.body;
 
   if (!name || !email || !role)
@@ -59,7 +59,7 @@ router.put("/:userId/:id", isAdminAndSrManager, async (req, res) => {
   }
 });
 
-router.delete("/:userId/:id", isAdminAndSrManager, async (req, res) => {
+router.delete("/:id", isAdminAndSrManager, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
 
